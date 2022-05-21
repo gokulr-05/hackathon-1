@@ -4,8 +4,11 @@ let productBucket;
 
 let fetchByBrand = async (brandName) => {
   try {
+    // let response1 = await fetch(
+    //   `http://makeup-api.herokuapp.com/api/v1/products.json?brand=${brandName}`
+    // );
     let response1 = await fetch(
-      `http://makeup-api.herokuapp.com/api/v1/products.json?brand=${brandName}`
+      `https://makeup-api.herokuapp.com/api/v1/products.json?brand=${brandName}`
     );
 
     let data1 = await response1.json();
