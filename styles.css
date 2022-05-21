@@ -20,8 +20,8 @@
 }
 
 .img-bucket {
-  height: 250px;
-  width: 250px;
+  height: 100px;
+  width: 100px;
   margin: 10px auto;
   border-radius: 10px;
   overflow: hidden;
