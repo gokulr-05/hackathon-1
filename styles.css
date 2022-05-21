@@ -1,0 +1,48 @@
+.bucket-1 {
+  width: 85%;
+  margin: 100px auto;
+  /* background-color: antiquewhite; */
+  background-color: black;
+  padding: 20px;
+  border-radius: 10px;
+  color: black;
+}
+
+.product-card {
+  /* background-color: rgb(255, 170, 0); */
+  /* background-color: rgba(0, 0, 0, 0.696); */
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 50px 20px;
+  word-wrap: break-word;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.591);
+}
+
+.img-bucket {
+  height: 250px;
+  width: 250px;
+  margin: 10px auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.img {
+  height: 100%;
+  width: 100%;
+}
+
+.text-bucket {
+  margin: 10px auto;
+}
+
+.anchor {
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  padding: 3px;
+}
+
+.title {
+  color: white;
+}
