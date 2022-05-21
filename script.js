@@ -1,29 +1,29 @@
 // ################################################### START DATA FETCHING LOGIN ##################################
 
 let fetchFunc = async () => {
-  try {
-    let response = await fetch(
-      "http://makeup-api.herokuapp.com/api/v1/products.json"
+  //   try {
+  let response = await fetch(
+    "http://makeup-api.herokuapp.com/api/v1/products.json"
+  );
+  let data = await response.json();
+
+  console.log("THE FETCHED DATA=", data);
+
+  data.map((val) => {
+    console.log(
+      "#########################################################################################"
     );
-    let data = await response.json();
+    console.log("brand=", val.brand);
+    console.log("name=", val.name);
+    console.log("price=", val.price);
+    console.log("image_link=", val.image_link);
+    console.log("product_link=", val.product_link);
+    console.log("description=", val.description);
+    console.log(
+      "#########################################################################################"
+    );
 
-    console.log("THE FETCHED DATA=", data);
-
-    data.map((val) => {
-      console.log(
-        "#########################################################################################"
-      );
-      console.log("brand=", val.brand);
-      console.log("name=", val.name);
-      console.log("price=", val.price);
-      console.log("image_link=", val.image_link);
-      console.log("product_link=", val.product_link);
-      console.log("description=", val.description);
-      console.log(
-        "#########################################################################################"
-      );
-
-      let values = `
+    let values = `
     
     <div class="img-bucket">
     <img src="${val.image_link}" class="img" alt=${val.name} />
@@ -40,14 +40,15 @@ let fetchFunc = async () => {
     <h4>Description: ${val.description}</h4>
     `;
 
-      let productBucket = document.createElement("div");
-      productBucket.classList.add("product-card");
-      productBucket.innerHTML = values;
-      bucket.append(productBucket);
-    });
-  } catch (err) {
-    console.log("Error Occured:", err);
-  }
+    let productBucket = document.createElement("div");
+    productBucket.classList.add("product-card");
+    productBucket.innerHTML = values;
+    bucket.append(productBucket);
+  });
+  //   }
+  //   catch (err) {
+  //     console.log("Error Occured:", err);
+  //   }
 };
 
 // ################################################### END DATA FETCHING LOGIN ##################################
