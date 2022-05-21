@@ -1,3 +1,24 @@
+// fetch individual data by brand
+
+let fetchByBrand = async (brandName) => {
+  let response1 = await fetch(
+    `http://makeup-api.herokuapp.com/api/v1/products.json?brand=${brandName}`
+  );
+
+  let data1 = await response1.json();
+
+  console.log("filtered by Brand:", data1);
+};
+
+// ############################################# onchange function #############################
+
+let changeHandler = (e) => {
+  console.log("change handler function", e.target.value);
+  fetchByBrand(e.target.value);
+};
+
+// ############################################# end onchange function #############################
+
 // ################################################### START DATA FETCHING LOGIN ##################################
 
 let fetchFunc = async () => {
@@ -68,6 +89,11 @@ let fetchFunc = async () => {
     let select1 = document.createElement("select");
     select1.setAttribute("name", "brand");
     select1.setAttribute("id", "brand");
+    // select1.onchange = function (e) {
+    //   console.log("onchange handler",e.target.value);
+    // };
+
+    select1.onchange = changeHandler;
 
     let op1 = document.createElement("option");
     op1.setAttribute("value", "none");
