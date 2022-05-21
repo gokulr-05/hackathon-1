@@ -3,39 +3,40 @@ let count = 0;
 let productBucket;
 
 let fetchByBrand = async (brandName) => {
-  let response1 = await fetch(
-    `http://makeup-api.herokuapp.com/api/v1/products.json?brand=${brandName}`
-  );
+  try {
+    let response1 = await fetch(
+      `http://makeup-api.herokuapp.com/api/v1/products.json?brand=${brandName}`
+    );
 
-  let data1 = await response1.json();
+    let data1 = await response1.json();
 
-  console.log("filtered by Brand:", data1);
+    console.log("filtered by Brand:", data1);
 
-  // let buc1 = document.getElementById("bucket-1");
-  let buc1 = document.getElementById("productCardContainer");
+    // let buc1 = document.getElementById("bucket-1");
+    let buc1 = document.getElementById("productCardContainer");
 
-  buc1.parentNode.removeChild(buc1);
+    buc1.parentNode.removeChild(buc1);
 
-  // let bucket = document.createElement("div");
-  // bucket.classList.add("bucket-1");
-  // bucket.setAttribute("id", "bucket-1");
-  // body.append(bucket);
+    // let bucket = document.createElement("div");
+    // bucket.classList.add("bucket-1");
+    // bucket.setAttribute("id", "bucket-1");
+    // body.append(bucket);
 
-  let a = document.createElement("div");
-  a.classList.add("productCardContainer");
-  a.setAttribute("id", "productCardContainer");
-  bucket.append(a);
+    let a = document.createElement("div");
+    a.classList.add("productCardContainer");
+    a.setAttribute("id", "productCardContainer");
+    bucket.append(a);
 
-  // bucket.innerText = `<h1 class="white">newly fetched content</h2>`;
+    // bucket.innerText = `<h1 class="white">newly fetched content</h2>`;
 
-  // let h2 = document.createElement("h2");
-  // h2.classList.add("white");
-  // h2.innerText = ++count;
+    // let h2 = document.createElement("h2");
+    // h2.classList.add("white");
+    // h2.innerText = ++count;
 
-  // a.append(h2);
+    // a.append(h2);
 
-  data1.map((val) => {
-    let values = `
+    data1.map((val) => {
+      let values = `
   
   <div class="img-bucket">
   <img src="${val.image_link}" class="img" alt=${val.name} />
@@ -52,19 +53,25 @@ let fetchByBrand = async (brandName) => {
   <h4>Description: ${val.description}</h4>
   `;
 
-    productBucket = document.createElement("div");
-    productBucket.classList.add("product-card");
-    productBucket.innerHTML = values;
-    // bucket.append(productBucket);
-    a.append(productBucket);
-  });
+      productBucket = document.createElement("div");
+      productBucket.classList.add("product-card");
+      productBucket.innerHTML = values;
+      // bucket.append(productBucket);
+      a.append(productBucket);
+    });
+  } catch (err) {
+    confirm.log("Error Occured:", err);
+  }
 };
 
 // ############################################# onchange function #############################
 
 let changeHandler = (e) => {
   console.log("change handler function", e.target.value);
-  fetchByBrand(e.target.value);
+
+  if (e.target.value !== "none") {
+    fetchByBrand(e.target.value);
+  }
 };
 
 // ############################################# end onchange function #############################
