@@ -1,4 +1,6 @@
 // fetch individual data by brand
+let count = 0;
+let productBucket;
 
 let fetchByBrand = async (brandName) => {
   let response1 = await fetch(
@@ -8,6 +10,54 @@ let fetchByBrand = async (brandName) => {
   let data1 = await response1.json();
 
   console.log("filtered by Brand:", data1);
+
+  // let buc1 = document.getElementById("bucket-1");
+  let buc1 = document.getElementById("productCardContainer");
+
+  buc1.parentNode.removeChild(buc1);
+
+  // let bucket = document.createElement("div");
+  // bucket.classList.add("bucket-1");
+  // bucket.setAttribute("id", "bucket-1");
+  // body.append(bucket);
+
+  let a = document.createElement("div");
+  a.classList.add("productCardContainer");
+  a.setAttribute("id", "productCardContainer");
+  bucket.append(a);
+
+  // bucket.innerText = `<h1 class="white">newly fetched content</h2>`;
+
+  // let h2 = document.createElement("h2");
+  // h2.classList.add("white");
+  // h2.innerText = ++count;
+
+  // a.append(h2);
+
+  data1.map((val) => {
+    let values = `
+  
+  <div class="img-bucket">
+  <img src="${val.image_link}" class="img" alt=${val.name} />
+  </div>
+
+ 
+  <h4>Brand Name: ${val.brand}</h4>
+  <h4>Product Name: ${val.name}</h4>
+  <h4>Product Price: ${val.price}</h4>
+  <h4>Product Image Link: ${val.image_link}</h4>
+  <a target="_blank" class="anchor" href=${val.image_link}>Click Here to Goto above Product Image Link page</a>
+  <h4>Product Link: ${val.product_link}</h4>
+  <a target="_blank" class="anchor" href=${val.product_link}>Click Here to Goto above Product Link page</a>
+  <h4>Description: ${val.description}</h4>
+  `;
+
+    productBucket = document.createElement("div");
+    productBucket.classList.add("product-card");
+    productBucket.innerHTML = values;
+    // bucket.append(productBucket);
+    a.append(productBucket);
+  });
 };
 
 // ############################################# onchange function #############################
@@ -49,19 +99,6 @@ let fetchFunc = async () => {
     console.log("oriBrands=", oriBrands);
 
     data.map((val) => {
-      console.log(
-        "#########################################################################################"
-      );
-      console.log("brand=", val.brand);
-      console.log("name=", val.name);
-      console.log("price=", val.price);
-      console.log("image_link=", val.image_link);
-      console.log("product_link=", val.product_link);
-      console.log("description=", val.description);
-      console.log(
-        "#########################################################################################"
-      );
-
       let values = `
     
     <div class="img-bucket">
@@ -79,10 +116,11 @@ let fetchFunc = async () => {
     <h4>Description: ${val.description}</h4>
     `;
 
-      let productBucket = document.createElement("div");
+      productBucket = document.createElement("div");
       productBucket.classList.add("product-card");
       productBucket.innerHTML = values;
-      bucket.append(productBucket);
+      // bucket.append(productBucket);
+      productContainer.append(productBucket);
     });
 
     let selectBucket = document.getElementById("select-btn");
@@ -135,7 +173,10 @@ titleBucket.classList.add(
 );
 titleBucket.innerHTML = title;
 bucket.append(titleBucket);
-
+let productContainer = document.createElement("div");
+productContainer.classList.add("productCardContainer");
+productContainer.setAttribute("id", "productCardContainer");
+bucket.append(productContainer);
 // ################################################### END DOM CREATION LOGIN ##################################
 
 fetchFunc();
