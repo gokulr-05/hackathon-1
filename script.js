@@ -80,9 +80,13 @@ let changeHandler = (e) => {
 
 let fetchFunc = async () => {
   try {
+    // let response = await fetch(
+    //   "http://makeup-api.herokuapp.com/api/v1/products.json"
+    // );
     let response = await fetch(
-      "http://makeup-api.herokuapp.com/api/v1/products.json"
+      "https://makeup-api.herokuapp.com/api/v1/products.json"
     );
+
     let data = await response.json();
 
     console.log("THE FETCHED DATA=", data);
